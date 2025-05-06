@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag Drop</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .drag-container {
+            display: flex;
+            justify-content: center;
+        }
+        .dragBox {
+            border:1px solid #000;
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            margin: 10px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+    <p>Drag Drop</p>
+    <div class="drag-container">
+        <div class="dragBox" ondrop="imgDrop(event)" ondragover="allowImgDrop(event)">
+            <img src="./laptop.jpg" alt="laptop" id="laptop" draggable="true" ondragstart="imgDrag(event)" />
+        </div>
+        <div class="dragBox" ondrop="imgDrop(event)" ondragover="allowImgDrop(event)">
+            <img src="./bee.jpg" alt="laptop" id="bee" draggable="true" ondragstart="imgDrag(event)" />
+        </div>
+        <div class="dragBox" ondrop="imgDrop(event)" ondragover="allowImgDrop(event)">
+            
+        </div>
+    </div>
+
+    <script>
+        function imgDrag(e){
+            e.dataTransfer.setData("content", e.target.id);
+        }
+        function allowImgDrop(e){
+            e.preventDefault();
+        }
+        function imgDrop(e){
+            e.preventDefault();
+            let dataId = e.dataTransfer.getData("content");
+            e.target.appendChild(document.getElementById(dataId));
+        }
+    </script>
+    
+</body>
+</html>
