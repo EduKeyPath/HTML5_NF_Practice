@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getSSE()">Get SSE Data</button>
+    <p id="result"></p>
+    <script>
+        let source;
+        function getSSE(){
+            if(typeof EventSource !== undefined){
+                source = new EventSource('./filename.php');
+                source.onmessage = function(event){
+                    document.getElementById('result').innerHTML = event.data
+                }
+            }else{
+                document.getElementById('result').innerHTML = 'Your browser does not support';
+            }
+        }
+    </script>
+
+
+
+
+</body>
+</html>

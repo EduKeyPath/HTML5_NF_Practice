@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="uploadFiles"></label>
+    <input type="file" name="" id="uploadFiles" multiple onchange="uploadFiles()" />
+    <p id="res"></p>
+
+    <script>
+        function uploadFiles(){
+            let fileInput = document.getElementById('uploadFiles');
+            let x = '';
+
+            if('files' in fileInput){
+                if(fileInput.files.length == 0){
+                    x = 'Please select one or more file'
+                }else {
+                    for(i=0; i<fileInput.files.length; i++){
+                        let file = fileInput.files[i];
+                        x += `File${i+1}<br/>
+                        Name: ${file.name}<br/>
+                        Size: ${file.size}<br/>
+                        Type: ${file.type}<br/>
+                        Last Modified: ${file.lastModifiedDate}<br/><br/>`;
+                    }
+                }
+            }else{
+                if(x.value == ''){
+                    x = 'Please select one or more file'
+                }else {
+                    x = 'Your browser does not suuport the uploading files'
+                }
+            }
+            document.getElementById('res').innerHTML = x;
+        }
+    </script>
+</body>
+</html>
